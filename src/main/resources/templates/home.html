@@ -24,12 +24,12 @@
 <div class="featured container no-gutter">
 
     <div class="row posts">
-        <div id="1" class="item new col-md-4">
+        <div id="1" class="item new col-md-4" th:each="product:${products}">
             <a href="single-product.html">
                 <div class="featured-item">
                     <img src="assets/images/product-01.jpg" alt="">
-                    <h4>Blugi</h4>
-                    <h6>$15.00</h6>
+                    <h4 th:text="${product.name}"></h4>
+                    <h6 th:text="${product.startBiddingPrice}"></h6>
                 </div>
             </a>
         </div>

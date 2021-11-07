@@ -6,7 +6,9 @@ import com.sda.proiectFinalRecapitulare.model.Product;
 import com.sda.proiectFinalRecapitulare.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +18,18 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public void add(ProductDto productDto) {
+    public void add(ProductDto productDto, MultipartFile multipartFile) {
         Product product = new Product();
         product.setName(productDto.getName());
         product.setDescription(productDto.getDescription());
         product.setCategory(Category.valueOf(productDto.getCategory()));
         product.setStartingPrice(Integer.valueOf(productDto.getStartBiddingPrice()));
         product.setEndDateTime(LocalDateTime.parse(productDto.getEndDateTime()));
-
+        try {
+            product.setImage(multipartFile.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         productRepository.save(product);
     }
 

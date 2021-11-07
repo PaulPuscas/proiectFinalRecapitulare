@@ -10,7 +10,7 @@
     <title>Title</title>
 </head>
 <body>
-<form class="form-horizontal" th:object="${productDto}" th:action="@{/addItem}" method="post">
+<form class="form-horizontal" th:object="${productDto}" th:action="@{/addItem}" method="post" enctype="multipart/form-data">
     <fieldset>
         <!-- Form Name -->
         <legend>PRODUCTS</legend>
@@ -64,6 +64,16 @@
                 <input id="auction_end_time" th:field ="*{endDateTime}"  placeholder="Auction End Date and Time" class="form-control input-md" required="" type="datetime-local">
                 <!-- afiseaza erori -->
                 <label th:if="${#fields.hasErrors('endDateTime')}" th:class="'error'" th:errors="*{endDateTime}" class="col-lg-4 control-label" style="color:red;"></label>
+            </div>
+        </div>
+
+        <!-- Product image area-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="product_image">Product image</label>
+            <div class="col-md-4">
+                <input id="product_image" name="productImage" accept="image/png, image/jpg, image/jpeg" placeholder="Product image" class="form-control input-md" required="" type="file">
+                <!-- afiseaza erori -->
+                <label th:if="${#fields.hasErrors('name')}" th:class="'error'" th:errors="*{name}" class="col-lg-4 control-label" style="color:red;"></label>
             </div>
         </div>
 
