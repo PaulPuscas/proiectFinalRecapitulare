@@ -8,13 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public void add(ProductDto productDto){
+    public void add(ProductDto productDto) {
         Product product = new Product();
         product.setName(productDto.getName());
         product.setDescription(productDto.getDescription());
@@ -22,6 +24,22 @@ public class ProductService {
         product.setStartingPrice(Integer.valueOf(productDto.getStartBiddingPrice()));
         product.setEndDateTime(LocalDateTime.parse(productDto.getEndDateTime()));
 
-    productRepository.save(product);
+        productRepository.save(product);
+    }
+
+    public List<ProductDto> getAllProductDtos() {
+
+        List<Product> products = productRepository.findAll();
+        List<ProductDto> result = new ArrayList<>();
+        for (Product product : products) {
+            ProductDto productDto = new ProductDto();
+            productDto.setName(product.getName());
+            productDto.setDescription(product.getDescription());
+            productDto.setCategory(product.getCategory().name());
+            productDto.setStartBiddingPrice(product.getStartingPrice().toString());
+            productDto.setEndDateTime(product.getEndDateTime().toString());
+            result.add(productDto);
+        }
+        return result;
     }
 }

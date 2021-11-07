@@ -10,6 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class HomeController {
     @Autowired
@@ -39,4 +41,11 @@ public class HomeController {
         return "redirect:/addItem";//rulez redirect catre get la linia23 sa incarc obiectul
     }
 
+    @GetMapping("/home")
+    public String getHomePage(Model model){
+    List<ProductDto> productDtoList= productService.getAllProductDtos();//apeleaza Service pt a-i da lista de produse
+    model.addAttribute("products",productDtoList);//apoi o adauga pe model
+        System.out.println("Produse:" + productDtoList);
+        return "home";//acum este accesibil din home
+    }
 }

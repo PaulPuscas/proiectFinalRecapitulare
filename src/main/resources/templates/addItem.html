@@ -20,6 +20,8 @@
             <label class="col-md-4 control-label" for="product_name">Product name</label>
             <div class="col-md-4">
                 <input id="product_name" th:field="*{name}"  placeholder="Product name" class="form-control input-md" required="" type="text">
+                <!-- afiseaza erori -->
+                <label th:if="${#fields.hasErrors('name')}" th:class="'error'" th:errors="*{name}" class="col-lg-4 control-label" style="color:red;"></label>
             </div>
         </div>
 
@@ -28,6 +30,8 @@
             <label class="col-md-4 control-label" for="product_description">Product description</label>
             <div class="col-md-4">
                 <input id="product_description" th:field="*{description}"  placeholder="Product description" class="form-control input-md" required="" type="text">
+                <!-- afiseaza erori -->
+                <label th:if="${#fields.hasErrors('description')}" th:class="'error'" th:errors="*{description}" class="col-lg-4 control-label" style="color:red;"></label>
             </div>
         </div>
 
@@ -58,6 +62,8 @@
             <label class="col-md-4 control-label" for="auction_end_time">Auction End Date and Time</label>
             <div class="col-md-4">
                 <input id="auction_end_time" th:field ="*{endDateTime}"  placeholder="Auction End Date and Time" class="form-control input-md" required="" type="datetime-local">
+                <!-- afiseaza erori -->
+                <label th:if="${#fields.hasErrors('endDateTime')}" th:class="'error'" th:errors="*{endDateTime}" class="col-lg-4 control-label" style="color:red;"></label>
             </div>
         </div>
 
