@@ -1,6 +1,7 @@
 package com.sda.proiectFinalRecapitulare.service;
 
 import com.sda.proiectFinalRecapitulare.dto.ProductDto;
+import com.sda.proiectFinalRecapitulare.model.Category;
 import com.sda.proiectFinalRecapitulare.model.Product;
 import com.sda.proiectFinalRecapitulare.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,10 @@ public class ProductService {
         Product product = new Product();
         product.setName(productDto.getName());
         product.setDescription(productDto.getDescription());
+        product.setCategory(Category.valueOf(productDto.getCategory()));
         product.setStartingPrice(Integer.valueOf(productDto.getStartBiddingPrice()));
         product.setEndDateTime(LocalDateTime.parse(productDto.getEndDateTime()));
+
     productRepository.save(product);
     }
 }
